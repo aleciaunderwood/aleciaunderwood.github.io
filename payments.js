@@ -16,7 +16,7 @@ const AK_PAYMENT_CONFIG = {
   currency: "USD",
   venmoUsername: "mikeandalecia",
   venmoNote: "Unbroken Promises ebook",
-  downloadUrl: "PRODUCT_DOWNLOAD_URL"
+  downloadUrl: "https://github.com/aleciaunderwood/aleciaunderwood.github.io/raw/refs/heads/main/book/unbrokenpromises/files/Unbroken_Promises_Alecias_Kitchen_Complete_Book_Epilogue.docx"
 };
 
 function akShowPaymentMessage(message, isError = false) {
@@ -30,7 +30,7 @@ function akShowPaymentMessage(message, isError = false) {
 function akSetDownloadLink() {
   const download = document.getElementById("ak-download-link");
   if (!download) return;
-  if (AK_PAYMENT_CONFIG.downloadUrl && AK_PAYMENT_CONFIG.downloadUrl !== "PRODUCT_DOWNLOAD_URL") {
+  if (AK_PAYMENT_CONFIG.downloadUrl && AK_PAYMENT_CONFIG.downloadUrl !== "https://github.com/aleciaunderwood/aleciaunderwood.github.io/raw/refs/heads/main/book/unbrokenpromises/files/Unbroken_Promises_Alecias_Kitchen_Complete_Book_Epilogue.docx") {
     download.href = AK_PAYMENT_CONFIG.downloadUrl;
     download.classList.remove("ak-hidden");
   }
@@ -39,7 +39,7 @@ function akSetDownloadLink() {
 function akOpenVenmo() {
   const username = AK_PAYMENT_CONFIG.venmoUsername;
 
-  if (!username || username === "YOUR_VENMO_USERNAME") {
+  if (!username || username === "mikeandalecia") {
     akShowPaymentMessage("Venmo username is missing in payments.js.", true);
     return;
   }
