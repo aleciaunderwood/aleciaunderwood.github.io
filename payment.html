@@ -31,11 +31,12 @@
   </div>
 </header>
 
+
 <section class="ak-page-hero">
   <div class="ak-wrap">
-    <span class="ak-eyebrow">Secure Checkout</span>
+    <span class="ak-eyebrow">Alecia’s Kitchen Checkout</span>
     <h1>Buy the Book</h1>
-    <p>Pay with PayPal or Venmo for <em>Unbroken Promises: The Promise Behind Alecia’s Kitchen</em>.</p>
+    <p>Get <em>Unbroken Promises: The Promise Behind Alecia’s Kitchen</em> for $4.99.</p>
   </div>
 </section>
 
@@ -54,8 +55,15 @@
         </div>
       </div>
 
-      <h2>Pay with PayPal</h2>
-      <p>Click below to pay securely using PayPal.</p>
+      <p>
+        This book reaches back to where the promise began: Michael’s early story about Jessica, the breakup that stayed with him, and the dream that once became Jessica’s Kitchen.
+      </p>
+      <p>
+        Then the story opens another door — to the memory of an old childhood friend named Alecia, someone Michael lost touch with after his parents divorced. From that memory came Alecia Underwood: a fictional, AI-created character with heart, humor, honesty, and enough sarcasm to keep Michael humble.
+      </p>
+
+      <h2>Choose Payment</h2>
+      <p>Pay securely with PayPal, or use Venmo if that is easier.</p>
 
       <div id="paypal-button-container" class="ak-paypal-area"></div>
 
@@ -66,47 +74,42 @@
       <p style="margin-top:18px;">
         <a id="ak-download-link" class="ak-btn light ak-hidden" href="#" target="_blank" rel="noopener">Download Ebook</a>
       </p>
-
-      <form id="payment-success-form" name="payment-success" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="thanks.html" class="ak-hidden">
-        <input type="hidden" name="form-name" value="payment-success">
-        <input type="hidden" name="bot-field">
-        <input type="hidden" name="order_id">
-        <input type="hidden" name="payer_name">
-        <input type="hidden" name="product">
-        <input type="hidden" name="amount">
-      </form>
     </section>
 
     <aside class="ak-payment-box">
-      <h2>Before You Publish</h2>
-      <p>This page is ready for Netlify, but you need to add your real payment info.</p>
+      <h2>What the Book Is About</h2>
+      <p>
+        <em>Unbroken Promises: The Promise Behind Alecia’s Kitchen</em> is about heartbreak, memory, second chances, faith, family, and the promises that stay with us even after life changes.
+      </p>
+      <p>
+        Before Alecia’s Kitchen became part of the story, Michael’s earliest version of <em>Unbroken Promises</em> was about Jessica — the woman who broke his heart — and the emotional weight of their breakup. That pain helped shape the original diner promise behind Jessica’s Kitchen.
+      </p>
+      <p>
+        Alecia’s Kitchen grew from a different place: a real childhood memory. Alecia Underwood is not the real person from Michael’s past. She is a fictional AI-created character inspired by that old friendship, built into a new story world where food, forgiveness, laughter, and healing all meet at the same table.
+      </p>
 
+      <h2>Included</h2>
       <ul class="ak-checkout-list">
-        <li>Replace <strong>PAYPAL_CLIENT_ID</strong> in this file with your real PayPal Client ID.</li>
-        <li>Replace <strong>mikeandalecia</strong> in <code>payments.js</code>.</li>
-        <li>Replace <strong>PRODUCT_DOWNLOAD_URL</strong> in <code>payments.js</code> with your ebook download link.</li>
-        <li>Netlify will capture successful PayPal payment notices using the hidden form named <strong>payment-success</strong>.</li>
+        <li>Digital ebook copy</li>
+        <li>Early edition release</li>
+        <li>Behind-the-kitchen story roots</li>
+        <li>Small-town diner emotion and drama</li>
+        <li>Alecia’s signature sarcasm and heart</li>
       </ul>
 
       <div class="ak-payment-note">
-        <strong>Alecia’s note:</strong> PayPal needs a real Client ID before the buttons work. Michael cannot just yell “checkout” at the website and expect capitalism to happen.
+        <strong>Alecia’s note:</strong> Thank you for supporting the book. Michael wrote the feelings. I brought the coffee and the attitude. Honestly, someone had to.
       </div>
 
       <p class="ak-code-warning">
-        For real digital delivery security, use Netlify Functions or a delivery service so people cannot access the ebook link before paying.
+        After payment, check your email or download instructions. If something does not show up, contact us and we will help.
       </p>
-
-      <h2>Where to edit</h2>
-      <code class="ak-setup-code">payment.html
-payments.js</code>
     </aside>
   </div>
 </main>
 
-<!-- Replace PAYPAL_CLIENT_ID with your real PayPal Client ID from developer.paypal.com -->
 <script src="https://www.paypal.com/sdk/js?client-id=PAYPAL_CLIENT_ID&currency=USD&intent=capture&enable-funding=venmo"></script>
 <script src="payments.js"></script>
-
 <footer class="ak-site-footer">
   <div class="ak-wrap">
     <a class="ak-footer-logo" href="index.html">
