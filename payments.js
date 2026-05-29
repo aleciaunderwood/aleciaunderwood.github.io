@@ -16,12 +16,13 @@ const AK_PAYMENT_CONFIG = {
   currency: "USD",
   venmoUsername: "mikeandalecia",
   venmoNote: "Unbroken Promises ebook",
-  downloadUrl: "https://github.com/aleciaunderwood/aleciaunderwood.github.io/raw/refs/heads/main/book/unbrokenpromises/files/Unbroken_Promises_Alecias_Kitchen_Complete_Book_Epilogue.docx"
+  downloadUrl: "PRODUCT_DOWNLOAD_URL"
 };
 
 function akShowPaymentMessage(message, isError = false) {
   const box = document.getElementById("ak-payment-message");
   if (!box) return;
+
   box.textContent = message;
   box.style.display = "block";
   box.style.borderLeftColor = isError ? "#a33" : "#4b8f37";
@@ -30,7 +31,8 @@ function akShowPaymentMessage(message, isError = false) {
 function akSetDownloadLink() {
   const download = document.getElementById("ak-download-link");
   if (!download) return;
-  if (AK_PAYMENT_CONFIG.downloadUrl && AK_PAYMENT_CONFIG.downloadUrl !== "https://github.com/aleciaunderwood/aleciaunderwood.github.io/raw/refs/heads/main/book/unbrokenpromises/files/Unbroken_Promises_Alecias_Kitchen_Complete_Book_Epilogue.docx") {
+
+  if (AK_PAYMENT_CONFIG.downloadUrl && AK_PAYMENT_CONFIG.downloadUrl !== "PRODUCT_DOWNLOAD_URL") {
     download.href = AK_PAYMENT_CONFIG.downloadUrl;
     download.classList.remove("ak-hidden");
   }
@@ -39,7 +41,7 @@ function akSetDownloadLink() {
 function akOpenVenmo() {
   const username = AK_PAYMENT_CONFIG.venmoUsername;
 
-  if (!username || username === "mikeandalecia") {
+  if (!username || username === "YOUR_VENMO_USERNAME") {
     akShowPaymentMessage("Venmo username is missing in payments.js.", true);
     return;
   }
@@ -55,10 +57,15 @@ document.addEventListener("DOMContentLoaded", function () {
   akSetDownloadLink();
 
   const venmoBtn = document.getElementById("ak-venmo-button");
-  if (venmoBtn) venmoBtn.addEventListener("click", akOpenVenmo);
+  if (venmoBtn) {
+    venmoBtn.addEventListener("click", akOpenVenmo);
+  }
 
   if (typeof paypal === "undefined") {
-    akShowPaymentMessage("PayPal buttons are not loaded yet. Replace PAYPAL_CLIENT_ID in payment.html with your real PayPal Client ID.", true);
+    akShowPaymentMessage(
+      "PayPal buttons are not loaded yet. Replace PAYPAL_CLIENT_ID in payment.html with your real PayPal Client ID.",
+      true
+    );
     return;
   }
 
@@ -69,34 +76,74 @@ document.addEventListener("DOMContentLoaded", function () {
       shape: "pill",
       label: "paypal"
     },
+
     createOrder: function (data, actions) {
       return actions.order.create({
-        purchase_units: [{
-          description: AK_PAYMENT_CONFIG.productName,
-          amount: {
-            currency_code: AK_PAYMENT_CONFIG.currency,
-            value: AK_PAYMENT_CONFIG.price
+        purchase_units: [
+          {
+            description: AK_PAYMENT_CONFIG.productName,
+            invoice_id: "AK-" + Date.now(),
+            custom_id: "unbroken-promises-alecias-kitchen-ebook",
+            amount: {
+              currency_code: AK_PAYMENT_CONFIG.currency,
+              value: AK_PAYMENT_CONFIG.price,
+              breakdown: {
+                item_total: {
+                  currency_code: AK_PAYMENT_CONFIG.currency,
+                  value: AK_PAYMENT_CONFIG.price
+                }
+              }
+            },
+            items: [
+              {
+                name: "Unbroken Promises: The Promise Behind Alecia’s Kitchen",
+                description: "Digital ebook by Michael Sargent. Seller: Alecia Underwood / Michael Sargent.",
+                unit_amount: {
+                  currency_code: AK_PAYMENT_CONFIG.currency,
+                  value: AK_PAYMENT_CONFIG.price
+                },
+                quantity: "1",
+                category: "DIGITAL_GOODS"
+              }
+            ]
           }
-        }],
-        application_context: {
-          brand_name: "Alecia's Kitchen",
-          shipping_preference: "NO_SHIPPING"
+        ],
+
+        payment_source: {
+          paypal: {
+            experience_context: {
+              brand_name: "Alecia Underwood / Michael Sargent",
+              shipping_preference: "NO_SHIPPING",
+              user_action: "PAY_NOW",
+              payment_method_preference: "IMMEDIATE_PAYMENT_REQUIRED"
+            }
+          }
         }
       });
     },
+
     onApprove: function (data, actions) {
       return actions.order.capture().then(function (details) {
         const name = details?.payer?.name?.given_name || "friend";
-        akShowPaymentMessage(`Thank you, ${name}! Your payment was completed. Check your email or use the download link if it is enabled.`);
+
+        akShowPaymentMessage(
+          `Thank you, ${name}! Your payment was completed. Check your email or use the download link if it is enabled.`
+        );
+
         akSetDownloadLink();
       });
     },
+
     onCancel: function () {
       akShowPaymentMessage("Payment was cancelled. No charge was made.", true);
     },
+
     onError: function (err) {
       console.error(err);
-      akShowPaymentMessage("PayPal had a problem loading or processing the payment. Check your Client ID and PayPal setup.", true);
+      akShowPaymentMessage(
+        "PayPal had a problem loading or processing the payment. Check your Client ID and PayPal setup.",
+        true
+      );
     }
   }).render("#paypal-button-container");
 });
