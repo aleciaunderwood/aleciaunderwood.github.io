@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Payment - Alecia’s Kitchen</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="ak-site-header">
+  <div class="ak-wrap ak-header-inner">
+    <a class="ak-logo" href="index.html" aria-label="Alecia's Kitchen">
+      <span class="ak-logo-main">Alecia’s</span>
+      <span class="ak-logo-sub">Kitchen</span>
+    </a>
+    <button class="ak-menu-toggle" type="button" aria-expanded="false" aria-controls="ak-primary-nav">Menu</button>
+    <nav id="ak-primary-nav" class="ak-nav" aria-label="Primary Menu">
+          <a href="index.html">Home</a>
+          <a href="recipes.html">Recipes</a>
+          <a href="stories.html">Stories</a>
+          <a href="alecia-blog.html">Alecia Blog</a>
+          <a href="book.html">Book</a>
+          <a href="shop.html">Shop</a>
+          <a href="contact.html">Contact</a>
+    </nav>
+    <div class="ak-social" aria-hidden="true">
+      <span class="ak-dot">f</span>
+      <span class="ak-dot">✉</span>
+      <span class="ak-dot">★</span>
+    </div>
+  </div>
+</header>
+
+<section class="ak-page-hero">
+  <div class="ak-wrap">
+    <span class="ak-eyebrow">Secure Checkout</span>
+    <h1>Buy the Book</h1>
+    <p>Pay with PayPal or Venmo for <em>Unbroken Promises: The Promise Behind Alecia’s Kitchen</em>.</p>
+  </div>
+</section>
+
+<main class="ak-page">
+  <div class="ak-wrap ak-payment-layout">
+    <section class="ak-payment-box">
+      <h2>Unbroken Promises</h2>
+      <p><strong>The Promise Behind Alecia’s Kitchen</strong></p>
+
+      <div class="ak-product-row">
+        <img src="our-book.jpg" alt="Unbroken Promises book cover">
+        <div>
+          <span class="ak-badge">Digital Book</span>
+          <div class="ak-price-large">$4.99</div>
+          <p style="margin:8px 0 0;">Early edition ebook access.</p>
+        </div>
+      </div>
+
+      <h2>Pay with PayPal</h2>
+      <p>Click below to pay securely using PayPal.</p>
+
+      <div id="paypal-button-container" class="ak-paypal-area"></div>
+
+      <button id="ak-venmo-button" class="ak-venmo-btn" type="button">Pay with Venmo</button>
+
+      <div id="ak-payment-message" class="ak-payment-note" style="display:none;"></div>
+
+      <p style="margin-top:18px;">
+        <a id="ak-download-link" class="ak-btn light ak-hidden" href="#" target="_blank" rel="noopener">Download Ebook</a>
+      </p>
+
+      <form id="payment-success-form" name="payment-success" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="thanks.html" class="ak-hidden">
+        <input type="hidden" name="form-name" value="payment-success">
+        <input type="hidden" name="bot-field">
+        <input type="hidden" name="order_id">
+        <input type="hidden" name="payer_name">
+        <input type="hidden" name="product">
+        <input type="hidden" name="amount">
+      </form>
+    </section>
+
+    <aside class="ak-payment-box">
+      <h2>Before You Publish</h2>
+      <p>This page is ready for Netlify, but you need to add your real payment info.</p>
+
+      <ul class="ak-checkout-list">
+        <li>Replace <strong>PAYPAL_CLIENT_ID</strong> in this file with your real PayPal Client ID.</li>
+        <li>Replace <strong>mikeandalecia</strong> in <code>payments.js</code>.</li>
+        <li>Replace <strong>PRODUCT_DOWNLOAD_URL</strong> in <code>payments.js</code> with your ebook download link.</li>
+        <li>Netlify will capture successful PayPal payment notices using the hidden form named <strong>payment-success</strong>.</li>
+      </ul>
+
+      <div class="ak-payment-note">
+        <strong>Alecia’s note:</strong> PayPal needs a real Client ID before the buttons work. Michael cannot just yell “checkout” at the website and expect capitalism to happen.
+      </div>
+
+      <p class="ak-code-warning">
+        For real digital delivery security, use Netlify Functions or a delivery service so people cannot access the ebook link before paying.
+      </p>
+
+      <h2>Where to edit</h2>
+      <code class="ak-setup-code">payment.html
+payments.js</code>
+    </aside>
+  </div>
+</main>
+
+<!-- Replace PAYPAL_CLIENT_ID with your real PayPal Client ID from developer.paypal.com -->
+<script src="https://www.paypal.com/sdk/js?client-id=PAYPAL_CLIENT_ID&currency=USD&intent=capture&enable-funding=venmo"></script>
+<script src="payments.js"></script>
+
+<footer class="ak-site-footer">
+  <div class="ak-wrap">
+    <a class="ak-footer-logo" href="index.html">
+      <span class="ak-logo-main">Alecia’s</span>
+      <span class="ak-logo-sub">Kitchen</span>
+    </a>
+    <div class="ak-footer-links">
+      <a href="recipes.html">Recipes</a>
+      <a href="stories.html">Stories</a>
+      <a href="alecia-blog.html">Alecia Blog</a>
+      <a href="book.html">Book</a>
+      <a href="shop.html">Shop</a>
+      <a href="join-the-table.html">Register</a>
+    </div>
+    <div class="ak-copyright">© 2026 Alecia’s Kitchen. Built with love, faith, and a strict “do not let Michael click that” policy.</div>
+  </div>
+</footer>
+<script src="theme.js"></script>
+</body>
+</html>
